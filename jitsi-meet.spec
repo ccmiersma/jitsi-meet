@@ -18,16 +18,17 @@
 
 Name:		jitsi-meet
 Version:        1.0.2148
-Release:        3.local
+Release:        4.local
 
 Summary:	Jitsi-Meet
 Group:		local
 License:	Apache
 URL:		https://gitlab.com/ccmiersma/%{name}/
 Source0:        %{name}-%{version}.tar.gz
-BuildArch:      noarch
+BuildArch:      x86_64
 BuildRequires:  pandoc npm
-Requires:       local-httpd-vhosts
+Requires:       local-httpd-vhosts glibc
+AutoReqProv:    no
 
 
 %description
@@ -113,7 +114,7 @@ cat %{name}-defined-files-list %{name}-auto-files-list > %{name}-files-list
 
 
 %changelog
-* Mon Aug 07 2017 Christopher Miersma <ccmiersma@gmail.com> 1.0.2148-3.local
+* Mon Aug 07 2017 Christopher Miersma <ccmiersma@gmail.com> 1.0.2148-4.local
 - new package built with tito
 
 
