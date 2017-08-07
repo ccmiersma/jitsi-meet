@@ -107,5 +107,8 @@ cat %{name}-defined-files-list %{name}-auto-files-list > %{name}-files-list
 
 
 %changelog
+* Mon Aug 07 2017 Christopher Miersma <ccmiersma@gmail.com> 1.0.2148-1.local
+- new package built with tito
+
 
 
