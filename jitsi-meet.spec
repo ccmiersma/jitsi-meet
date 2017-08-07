@@ -18,7 +18,7 @@
 
 Name:		jitsi-meet
 Version:        1.0.2148
-Release:        1.local
+Release:        2.local
 
 Summary:	Jitsi-Meet
 Group:		local
@@ -69,15 +69,21 @@ mkdir -p %buildroot%_prefix/lib64
 
 cp -r ./ %buildroot/var/www/local-webapps.d/jitsi-meet
 mv %buildroot/var/www/local-webapps.d/jitsi-meet/jitsi-meet.conf %buildroot/etc/httpd/conf.d/local-webapps.d/
-ln -sT /etc/httpd/conf.d/local-webapps.d/jitsi-meet.conf %buildroot/var/www/local-webapps.d/jitsi-meet/jitsi-meet.conf
+rm %buildroot/var/www/local-webapps.d/jitsi-meet/jitsi-meet.spec
+
 mv %buildroot/var/www/local-webapps.d/jitsi-meet/config.js %buildroot%_sysconfdir/jitsi-meet/
 ln -sT %_sysconfdir/jitsi-meet/config.js %buildroot/var/www/local-webapps.d/jitsi-meet/config.js
+
+#Run this script in advance so that our find command picks it up.
+/usr/lib/rpm/brp-python-bytecompile
+
 
 ##Manually defined files and dirs that need special designation.
 ##This will end up in the files section.
 cat > %{name}-defined-files-list << EOF
 %docdir %{_mandir}
 %docdir %{_docdir}
+%dir /var/www/local-webapps.d/jitsi-meet/
 %config(noreplace) /etc/httpd/conf.d/local-webapps.d/jitsi-meet.conf
 %config(noreplace) %_sysconfdir/jitsi-meet/config.js
 EOF
@@ -107,7 +113,7 @@ cat %{name}-defined-files-list %{name}-auto-files-list > %{name}-files-list
 
 
 %changelog
-* Mon Aug 07 2017 Christopher Miersma <ccmiersma@gmail.com> 1.0.2148-1.local
+* Mon Aug 07 2017 Christopher Miersma <ccmiersma@gmail.com> 1.0.2148-2.local
 - new package built with tito
 
 
